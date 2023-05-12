@@ -1,0 +1,63 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+<body>
+<div class="container">
+	<div class="row">
+    <form id="regForm" action="/upload_list" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+			<label for="email">اسم بیمار</label>
+			<input name="patient_name" type="varchar" class="form-control" placeholder="اسم بیمار" autocomplete="off">
+			<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+		</div>
+        <div class="form-group">
+			<label for="phone_number">شماره گوشی موبایل بیمار</label>
+			<input name="patient_phone_number"type="number" class="form-control" id="email"placeholder="+9123456789" autocomplete="off">
+			<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+		</div>
+
+    
+	<div class="form-group">
+    <label for="formFileMultiple">بارگزاری فایل </label>
+    <input type="file" name="files"class="form-control-file" id="exampleFormControlFile1" multiple="">
+    </div>
+	
+</div> 
+<div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>    
+    
+</div>
+                    
+
+    </form>
+
+	</div>
+</div>
+</body>
+</html>
