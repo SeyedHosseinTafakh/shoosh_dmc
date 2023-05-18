@@ -25,13 +25,29 @@
 <div class="container">
   <h2>Striped Rows</h2>
   <p>The .table-striped class adds zebra-stripes to a table:</p>
+  <div class="container">
+	<form id="regForm" >
+		<button type="submit" id="sendlogin" class="btn btn-primary">جستجو</button>
 
+		<input name="input_text" type="varchar"  autocomplete="off">
+
+		<select name="select" id="cars">
+			<option value="p_name">نام بیمار</option>
+			<option value="p_phone_number">شماره تلفن</option>
+			<option value="code">کد</option>
+		</select>
+		<label for="select">: جستجو بر اساس </label>
+
+	</form>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>نام بیمار</th>
+        <th>شماره تلفن بیمار</th>
+        <th>code</th>
+        <th>مشاهده</th>
+        <th>تاریخ ایجاد</th>
       </tr>
     </thead>
     <tbody>		  {% for every in result %}
@@ -40,8 +56,10 @@
       <tr>
         <td>{{ every.p_name }}</td>
         <td> {{every.p_phone_number}}</td>
-        <td> {{every.file_dir}}</td>
-        <td> {{every.created_at}}</td>
+        <td> code</td>
+        <td> link</td>
+        <!-- <td> {{every.file_dir}}</td> -->
+        <td> {{every.created_atj}}</td>
         
       </tr>
     </tbody>    {% endfor %}
