@@ -167,7 +167,7 @@ def random_char():
     x = [random.randrange(10) for p in range(0, 10)]
     return letters+str(numbers)
  
-print(random_char())
+# print(random_char())
 
 def get_code_by_phone_number(p_phone_number):
     query = "select * from  user_codes where p_phone_number = %s"
@@ -223,5 +223,32 @@ def search_in_records_phone_number(p_phone_number, start, finish):
     except Error as e:
         print(e)
 
+def search_in_records_p_name(p_name, start, finish):
+    query = "select * from records where p_name = %s limit " + str(start) + ", "+str(finish)
 
-print(search_in_records_phone_number("123", 1,10))
+    values = (p_name, )
+    try:
+        cursor.execute(query,values)
+        data = cursor.fetchall()
+        return data
+    except Error as e:
+        print(e)
+
+# print(search_in_records_phone_number("09398709892", 0,10))
+# print(search_in_records_phone_number("09398709892", 0,10))
+# print(search_in_records_p_name("shandool", 0,10))
+
+def search_in_code(code):
+    query = "select * FROM user_codes where   p_access_code = %s"
+    values = (code,)
+    try:
+        cursor.execute(query,values)
+        data = cursor.fetchall()
+        return data
+    except Error as e:
+        print(e)
+
+
+# print(search_in_code("abc1020"))
+
+# print(69%60)

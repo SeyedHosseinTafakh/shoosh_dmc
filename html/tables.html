@@ -66,7 +66,33 @@
 
 
   </table>
-</div>
+<div class="panel-footer row">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+	<li class="page-item"><input class="myclass" type="button" value="0" id="MyButton" ></li>
 
+	{% for every in number_of_pages %}
+    <!-- <li class="page-item"><input type="button" value="صفحه قبل" id="MyButton" ></li> -->
+    <li class="page-item"><input class="myclass" type="button" value="{{every+1}}" id="MyButton" ></li>
+	{% endfor %}
+    <!-- <li class="page-item"><input type="button" value="Capacity Chart" id="MyButton" ></li> -->
+  </ul>
+</nav>
+</div>
 </body>
+<script>
+
+$(document).ready(function(){
+    $('.myclass').click(function(){
+		const url = new URL(window.location.href);
+       console.log(url);
+	   <!-- url.searchParams.set('key', 'value'); -->
+	   <!-- console.log(event.target.value); -->
+	   
+	   url.searchParams.set('page_number', event.target.value);
+		window.location.href = url;
+    });
+  });
+
+</script>
 </html>

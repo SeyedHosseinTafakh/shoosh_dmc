@@ -66,12 +66,44 @@ def token_required(f):
 @token_required
 def show_list():
     if request.method=="GET":
-       requests = request.args.get("page_number")
-       # TODO::// i have to add page numbers
-       recs = get_records(0,20)
-       #print(recs)
-       print(request.args)
-       return render_template("tables.html",result=recs)
+        page_number = request.args.get("page_number")
+        # print(page_number)
+        if not(page_number) or int(page_number)==0:
+            print(page_number)
+            page_number=1
+        start = (int(page_number)*40)-40
+        finish = int(page_number)*40
+        # TODO::// i have to add page numbers
+        rows_number = count_rows_record()[0]['counts']
+        # numbers_of_pages = 0
+        print(rows_number)
+        number_of_pages = int(rows_number/40)
+        
+        # if rows_number%10 == rows_number:
+            # print("no page")
+        # print(rows_number%40)
+        recs = get_records(start,finish)
+        #print(recs)
+        # print(request.args)
+        if request.args.get("select")=="p_name":
+            input_text=request.args.get("input_text")
+            recs = search_in_records_p_name(input_text,start,finish)
+        elif request.args.get("select")=="p_phone_number":
+            input_text=request.args.get("input_text")
+            recs = search_in_records_phone_number(input_text,start,finish)
+        elif request.args.get("select")=="code":
+            input_text=request.args.get("input_text")
+            recived_code = search_in_code(input_text)
+            # print(recived_code)
+            if len(recived_code)>0:
+                # print(recived_code)
+                p_phone_number = recived_code[0]["p_phone_number"]
+                # print(p_phone_number)
+                recs = search_in_records_phone_number(p_phone_number,start,finish)
+                # print(recs)
+        print(number_of_pages%rows_number)
+        print(number_of_pages)
+        return render_template("tables.html",result=recs,number_of_pages=range(0,number_of_pages))
 @app.route('/upload_list',methods = [ 'GET', 'POST'])
 @token_required
 def show_upload_form():
@@ -83,8 +115,8 @@ def show_upload_form():
         # print(request.values.get("patient_phone_number"))
         # print(request.values.get("more_text"))
         codes = get_code_by_phone_number(str(request.values.get("patient_phone_number")))
-        print(codes)
-        print(str(request.values.get("patient_phone_number")))
+        # print(codes)
+        # print(str(request.values.get("patient_phone_number")))
         if len(codes)<=0:
             # code = random_char()
             upload_code(request.values.get("patient_phone_number"))
@@ -105,6 +137,7 @@ def show_upload_form():
                 else:
                 # # todo::// add error handeling
                     each.save(os.path.join('upload_dir/'+str(jdatetime.datetime.now().strftime('%Y-%m-%d'))+"/"+generated_uuid+"/",each.filename))
+        # for every in range(0,40):
         insert_record(request.values.get("patient_name"),
                         request.values.get("patient_phone_number"),
                         request.values.get("more_text"),
@@ -132,14 +165,29 @@ def sign_in():
             error = "اطلاعات وارد شده اشتباه میباشد"
             return render_template("login.html",error = error)
 
+from glob import glob
+from io import BytesIO
+from zipfile import ZipFile
+import os
 
-
-# @app.route('/download/<path:filename>',methods = [ 'GET'])
-# def download_files(filename):
-    # return send_from_directory(directory='upload_dir/2023-05-14/01cbb620-1b76-451b-a7c4-d578b2b646a3', path=filename,as_attachment=True)
-
+@app.route('/download/<jdate>/<uuid>',methods = [ 'GET'])
+def download_files(jdate, uuid):
+    target = "upload_dir/"+jdate+"/"+uuid
+    stream = BytesIO()
+    with ZipFile(stream, 'w') as zf:
+        for file in glob(os.path.join(target, '*.dcm')):
+            zf.write(file, os.path.basename(file))
+    stream.seek(0)
+    return send_file(
+        stream,
+        as_attachment=True,
+        download_name='uuid.zip'
+    )
+    # return {"h":"s"}
 # todo :: search in list
 # todo :: add patient recipt code
+
+
 
 
 if __name__ == "__main__":
