@@ -98,7 +98,7 @@ cursor = connection.cursor(dictionary=True)
 
 
 def get_records(start,finish):
-    query = "select * from records LIMIT "+str(start)+","+str(finish)
+    query = "select * from records ORDER BY created_at DESC LIMIT "+str(start)+","+str(finish)+" "
     cursor.execute(query)
     data = cursor.fetchall()
     return data
@@ -223,9 +223,29 @@ def search_in_records_phone_number(p_phone_number, start, finish):
     except Error as e:
         print(e)
 
+
+def count_search_in_records_phone_number(p_phone_number):
+    query = "select count(*) as counts from records where p_phone_number = %s"
+    values = (p_phone_number, )
+    try:
+        cursor.execute(query,values)
+        data = cursor.fetchall()
+        return data
+    except Error as e:
+        print(e)
 def search_in_records_p_name(p_name, start, finish):
     query = "select * from records where p_name = %s limit " + str(start) + ", "+str(finish)
 
+    values = (p_name, )
+    try:
+        cursor.execute(query,values)
+        data = cursor.fetchall()
+        return data
+    except Error as e:
+        print(e)
+
+def count_search_in_records_p_name(p_name):
+    query = "select count(*) as counts from records where p_name = %s"
     values = (p_name, )
     try:
         cursor.execute(query,values)

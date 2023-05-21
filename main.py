@@ -69,14 +69,14 @@ def show_list():
         page_number = request.args.get("page_number")
         # print(page_number)
         if not(page_number) or int(page_number)==0:
-            print(page_number)
+            # print(page_number)
             page_number=1
         start = (int(page_number)*40)-40
         finish = int(page_number)*40
         # TODO::// i have to add page numbers
         rows_number = count_rows_record()[0]['counts']
         # numbers_of_pages = 0
-        print(rows_number)
+        # print(rows_number)
         number_of_pages = int(rows_number/40)
         
         # if rows_number%10 == rows_number:
@@ -88,9 +88,17 @@ def show_list():
         if request.args.get("select")=="p_name":
             input_text=request.args.get("input_text")
             recs = search_in_records_p_name(input_text,start,finish)
+            # rows_number = count_search_in_records_p_name(input_text)[0]['counts']
+            rows_number = count_search_in_records_p_name(input_text)
+            if rows_number:
+                rows_number=rows_number[0]['counts']
         elif request.args.get("select")=="p_phone_number":
             input_text=request.args.get("input_text")
             recs = search_in_records_phone_number(input_text,start,finish)
+            rows_number = count_search_in_records_phone_number(input_text)
+            if rows_number:
+                rows_number=rows_number[0]['counts']
+
         elif request.args.get("select")=="code":
             input_text=request.args.get("input_text")
             recived_code = search_in_code(input_text)
@@ -100,9 +108,18 @@ def show_list():
                 p_phone_number = recived_code[0]["p_phone_number"]
                 # print(p_phone_number)
                 recs = search_in_records_phone_number(p_phone_number,start,finish)
+                rows_number = count_search_in_records_phone_number(p_phone_number)[0]['counts']
+                # print(count_search_in_records_phone_number(p_phone_number))
                 # print(recs)
-        print(number_of_pages%rows_number)
-        print(number_of_pages)
+        number_of_pages = int(int(rows_number)/40)
+        # print(recs)
+        for each in recs:
+            # print(each['p_phone_number'])
+            # print(get_code_by_phone_number(each['p_phone_number'])[0]['p_access_code'])
+            # print(get_code_by_phone_number(each['p_phone_number']))
+            each['p_access_code']=get_code_by_phone_number(each['p_phone_number'])[0]['p_access_code']
+            # print(each)
+        print(recs)
         return render_template("tables.html",result=recs,number_of_pages=range(0,number_of_pages))
 @app.route('/upload_list',methods = [ 'GET', 'POST'])
 @token_required
@@ -188,7 +205,82 @@ def download_files(jdate, uuid):
 # todo :: add patient recipt code
 
 
+@app.route('/plist',methods = ["POST", 'GET'])
+def patient_records():
+    if request.method=="GET":
+        return render_template("add_code.html")
+    if request.method=="POST":
+        input_text=request.values.get("code")
+        return redirect("/p_list?code="+input_text)
+        # page_number = request.args.get("page_number")
 
+        # print(request.values)
+        # input_text=request.values.get("code")
+        # recived_code = search_in_code(input_text)
+        # if not(page_number) or int(page_number)==0:
+            # print(page_number)
+            # page_number=1
+        # start = (int(page_number)*40)-40
+        # finish = int(page_number)*40
+        # if len(recived_code)>0:
+            # p_phone_number = recived_code[0]["p_phone_number"]
+            # recs = search_in_records_phone_number(p_phone_number,start,finish)
+            # rows_number = count_search_in_records_phone_number(p_phone_number)[0]['counts']
+            # number_of_pages = int(int(rows_number)/40)
+    # return render_template("tables.html",result=recs,number_of_pages=range(0,number_of_pages))
+            # print(number_of_pages)
+            # print(recs)
+            # start = (int(page_number)*40)-40
+            # finish = int(page_number)*40
+            # return render_template("ptables.html",result=recs,number_of_pages=range(0,number_of_pages))
+        # else:
+            # error="کد وارد شده در سیستم موجود نمیباشد"
+            # print(error)
+        # return render_template("add_code.html",error=error)
+
+
+@app.route('/p_list',methods = [ 'GET'])
+def patient_records_get():
+    page_number = request.args.get("page_number")
+
+    # print(request.values)
+    input_text=request.args.get("code")
+    recived_code = search_in_code(input_text)
+    if not(page_number) or int(page_number)==0:
+        # print(page_number)
+        page_number=1
+    start = (int(page_number)*40)-40
+    finish = int(page_number)*40
+    if len(recived_code)>0:
+        p_phone_number = recived_code[0]["p_phone_number"]
+        recs = search_in_records_phone_number(p_phone_number,start,finish)
+        rows_number = count_search_in_records_phone_number(p_phone_number)[0]['counts']
+        number_of_pages = int(int(rows_number)/40)
+# return render_template("tables.html",result=recs,number_of_pages=range(0,number_of_pages))
+        # print(number_of_pages)
+        # print(recs)
+        # start = (int(page_number)*40)-40
+        # finish = int(page_number)*40
+        return render_template("ptables.html",result=recs,number_of_pages=range(0,number_of_pages))
+    else:
+        error="کد وارد شده در سیستم موجود نمیباشد"
+        print(error)
+        return render_template("add_code.html",error=error)
+
+
+@app.route('/help',methods = [ 'GET'])
+def help():
+    return render_template("help.html")
+    
+@app.route("/testlist", methods=["GET"])
+def testlist():
+    return render_template("demo_teables.html")
+
+
+
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     #app = create_app()

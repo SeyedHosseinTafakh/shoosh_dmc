@@ -49,32 +49,63 @@
         <th>تاریخ ایجاد</th>
       </tr>
     </thead>
-    <tbody>		  {% for every in result %}
+    <tbody>		  
 
 
       <tr>
-        <td>{{ every.p_name }}</td>
-        <td> {{every.p_phone_number}}</td>
-        <td> {{every.p_access_code}}</td>
-        <!-- <td> code</td> -->
-        <td> link</td>
-        <!-- <td> {{every.file_dir}}</td> -->
-        <td> {{every.created_atj}}</td>
         
+        <td> ام ار ای کودک</td>
+        <td> 09123456789</td>
+		<td> qxc123 </td>
+		<td><a target="_blank" href="https://ivmartel.github.io/dwv-jqui/demo/stable/index.html?input=https%3A%2F%2Fraw.githubusercontent.com%2Fivmartel%2Fdwv%2Fmaster%2Ftests%2Fdata%2F%3Ffile%3Dbbmri-53323851.dcm%26file%3Dbbmri-53323707.dcm%26file%3Dbbmri-53323563.dcm%26file%3Dbbmri-53323419.dcm%26file%3Dbbmri-53323275.dcm%26file%3Dbbmri-53323131.dcm&dwvReplaceMode=void">مشاهده عکس</a>
+		<td>۱۴۰۲/۰۲/۳۱</td>
       </tr>
-    </tbody>    {% endfor %}
+	  <tr>
+		<td> ct قفس سینه </td>
+		<td> 09123456789</td>
+		<td> qxc123 </td>
+		<td><a target="_blank" href="https://ivmartel.github.io/dwv-jqui/demo/stable/index.html?input=https%3A%2F%2Fraw.githubusercontent.com%2Fivmartel%2Fdwv%2Fmaster%2Ftests%2Fdata%2F%3Ffile%3Dosirix-toutatix-100.dcm%26file%3Dosirix-toutatix-101.dcm&dwvReplaceMode=void">مشاهده عکس</a>
+		<td>۱۴۰۲/۰۲/۳۱</td>
+
+	  </tr>
+	  <tr>
+		<td> ct 2 قفس سینه </td>
+		<td> 09123456789</td>
+		<td> qxc123 </td>
+		<td><a target="_blank" href="https://ivmartel.github.io/dwv-jqui/demo/stable/index.html?input=https%3A%2F%2Fraw.githubusercontent.com%2Fivmartel%2Fdwv%2Fmaster%2Ftests%2Fdata%2Fosirix-goudurix.dcm">مشاهده عکس</a>
+		<td>۱۴۰۲/۰۲/۳۱</td>
+
+	  </tr>
+	  <tr>
+		<td> CS مغز </td>
+		<td> 09123456789</td>
+		<td> qxc123 </td>
+		<td><a target="_blank" href="https://ivmartel.github.io/dwv-jqui/demo/stable/index.html?input=https%3A%2F%2Fraw.githubusercontent.com%2Fivmartel%2Fdwv%2Fmaster%2Ftests%2Fdata%2Fosirix-cerebrix.dcm">مشاهده عکس</a>
+		<td>۱۴۰۲/۰۲/۳۱</td>
+
+	  </tr>
+	  <tr>
+		<td> CS قلب </td>
+		<td> 09123456789</td>
+		<td> qxc123 </td>
+		<td><a target="_blank" href="https://ivmartel.github.io/dwv-jqui/demo/stable/index.html?input=https%3A%2F%2Fraw.githubusercontent.com%2Fivmartel%2Fdwv%2Fmaster%2Ftests%2Fdata%2Fmultiframe-test1.dcm">مشاهده عکس</a>
+		<td>۱۴۰۲/۰۲/۳۱</td>
+
+	  </tr>
+	  
+    </tbody>    
 
 
   </table>
 <div class="panel-footer row">
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-	<li class="page-item"><input class="myclass" type="button" value="0" id="MyButton" ></li>
+	<!-- <li class="page-item"><input class="myclass" type="button" value="0" id="MyButton" ></li> -->
 
-	{% for every in number_of_pages %}
+	<!-- {% for every in number_of_pages %} -->
     <!-- <li class="page-item"><input type="button" value="صفحه قبل" id="MyButton" ></li> -->
-    <li class="page-item"><input class="myclass" type="button" value="{{every+1}}" id="MyButton" ></li>
-	{% endfor %}
+    <!-- <li class="page-item"><input class="myclass" type="button" value="{{every+1}}" id="MyButton" ></li> -->
+	<!-- {% endfor %} -->
     <!-- <li class="page-item"><input type="button" value="Capacity Chart" id="MyButton" ></li> -->
   </ul>
 </nav>

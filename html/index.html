@@ -18,7 +18,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Album example for Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
@@ -32,24 +34,28 @@
 <body>
 
 <div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <h1>رادیگرافی </h1>
+  <p>دسترسی به تمام امکانات رادیگرافی تحت اینترنت</p> 
 </div>
 <div class="container">
     <div class="row text-center">
         <div class="col-md-6 ">
             <div class="card mb-4 box-shadow jumbotron">
-            <h class="text-center">این قسمت برای ورود بیماران میباشد </h>
+            <h class="text-center">این قسمت برای ورود بیماران  و پزشکان میباشد </h>
             <br></br>
-            <button type="button" class="btn btn-primary">برای دیدن عکس خود اینجا کلیک کنید</button>
+            <!-- <button type="button" class="btn btn-primary"> -->
+			<a href="testlist">کلیک کنید</a>
+			<!-- </button> -->
             </div>
 
         </div>
         <div class="col-md-6 ">
             <div class="card mb-4 box-shadow jumbotron">
-            <h class="text-center">این قسمت برای ورود بیماران میباشد </h>
+            <h class="text-center">این قسمت برای ورود اوپراتور میباشد </h>
             <br></br>
-            <button type="button" class="btn btn-primary">برای دیدن عکس خود اینجا کلیک کنید</button>
+            <!-- <button type="button" class="btn btn-primary"> -->
+			<a href="testlist">کلیک کنید</a>
+			<!-- </button> -->
             </div>
 
         </div>
@@ -62,9 +68,31 @@
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_187eee88975%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_187eee88975%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.70000076293945%22%20y%3D%22120.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+                <img class="card-img-top" src="{{url_for('static', filename='Handling DICOM Medical Imaging Data - Presented by PostDICOM.png')}}"  alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"  data-holder-rendered="true">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">امکان جستجو و آنالیز عکسهای دایکام در پلتفرم به کمک تکنولوژی ذخیره سازی ابری و دسترسی به اطلاعات از هرجای اینترنت</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{url_for('static', filename='pexels-photo-4031817.jpeg')}}"  alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"  data-holder-rendered="true">
+                <div class="card-body">
+                  <p class="card-text">راحتی بیماران برای دسترسی به اطلاعات خود بر روی گوشی همراه و دیدن نتیجه تشخیص پزشک بدون هزینه</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{url_for('static', filename='pexels-photo-7088530.jpeg')}}"  alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"  data-holder-rendered="true">
+                <div class="card-body">
+                  <p class="card-text">دسترسی به پلتفرم تحت وب برای دیدن عکسها برای متخصصان و آنالیز تصویر و تشخیص بیماری</p>
                   <div class="d-flex justify-content-between align-items-center">
                     
                   </div>
@@ -78,25 +106,14 @@
 <div class="container">
     
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    جهت ارتباط با این شماره تلفن تماس بگیرید:
+    <p class="text-dark">09388478895</p>
   </div>
-</div>
+  <!-- Copyright -->
+</footer>
 
 </body>
 </html>
