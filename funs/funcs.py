@@ -90,7 +90,7 @@ def create_connection(host_name, user_name, user_password, database):
     return connection
 
 
-connection = create_connection("localhost", "root", "12345678Ho", "dmc")
+connection = create_connection("localhost", "root", "5260145143", "dmc")
 
 
 
